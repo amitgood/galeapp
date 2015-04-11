@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+            <!-- /sidebar -->
+          
+{% block content %}
+            <!-- /sidebar -->
+          
+            <!-- main -->
+                <div class="padding">
+                        <div class="row">    
+                          <small class="text-muted">{{ article.lastupdated }} | <a href="#/" class="text-muted">{{ article.author }}</a></small>
+                          <div class="item" class="col-sm-12">
+                          <img class="img-responsive" src="http://placekitten.com/1000/200" class="slidImageSize" />
+	                      <div class="row">    
+	                      <div class="row">    
+                          <div class="col-sm-6">
+	                            <p>{{ article.content }}</p>
+                          </div>
+                          <div class="item" class="col-sm-6">
+                          <img class="img-responsive" src="http://placekitten.com/g/200/300" class="slidImageSize" />
+                          </div>
+                          </div>
+                          </div>
+                        </div>
+                                                
+                    {% include "related_article.html" %}
+                       
+                    </div><!-- /col-9 -->
+                </div><!-- /padding -->
+            <!-- /main -->
+{% endblock content %}
