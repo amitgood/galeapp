@@ -3,8 +3,7 @@
           
 {% block content %}
             <!-- main -->
-                <div class="padding">
-                    <div class="full col-sm-9">
+                    <div class="full col-sm-12">
                         <!-- content -->
                         <div class="col-sm-12" id="stories">  
                           <div class="page-header text-muted divider">
@@ -13,24 +12,24 @@
                         </div>
                       <!--/top story-->
                         <div class="row">    
-                          <small class="text-muted">{{  article_list.0.lastupdated}} | <a href="#" class="text-muted">{{ article_list.0.author }}</a></small>
+                          <small class="text-muted">{{  top.lastupdated}} | <a href="#" class="text-muted">{{ top.authorname }}</a></small>
                           <div class="item" class="col-sm-12">
-                          <img class="img-responsive" src="http://placekitten.com/1000/200" class="slidImageSize" />
-                            <p>This is Some Awesome Featured Content This is Some Awesome Featured Content This is Some Awesome Featured Content Some Awesome Featured Content Some Awesome Featured Content Some Awesome Featured Content Some Awesome Featured Content Some Awesome Featured Content Some Awesome Featured Content This is Some Awesome Featured Content This is Some Awesome Featured Content This is Some Awesome Featured Content Some Awesome Featured Content Some Awesome Featured Content Some Awesome Featured Content Some Awesome Featured Content Some Awesome Featured Content Some Awesome Featured Content</p>
+                          <img class="img-responsive" src="static/images/{{ top.mainimage }}" class="slidImageSize" />
+                              {% include top.content %}
                           </div>
                           </div>
                         </div>
                         
                      <div>
-                      {% for article in article_list.all %}
+                      {% for article in article_list %}
                         <div class="row">    
                           <div class="col-sm-1">
-                            <h3>{{ article.id }}</h3>
+                            <h3>{{ forloop.counter }}</h3>
                           </div>
-                          <div class="col-sm-10">
+                          <div class="col-sm-8">
                             <h3>{{ article.articlename }}</h3>
                             <p>{{ article.shortdescription }}</p>
-                            <small class="text-muted">{{ article.lastupdated }} 
+                            <small class="text-muted">{{ article.authorname }},{{ article.lastupdated }} 
                              <a href='/articles/{{ article.articleid }}' class="text-muted">Read More</a>
                           </small>
                           </div>
@@ -41,6 +40,5 @@
                     {% include "related_article.html" %}
 
                     </div><!-- /col-9 -->
-                </div><!-- /padding -->
             <!-- /main -->
 {% endblock content %}

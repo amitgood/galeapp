@@ -7,16 +7,16 @@
             <!-- main -->
                 <div class="padding">
                         <div class="row">    
-                          <small class="text-muted">{{ article.lastupdated }} | <a href="#/" class="text-muted">{{ article.author }}</a></small>
+                          <small class="text-muted">{{ article.lastupdated }} | <a href="#/" class="text-muted">{{ article.authorname }}</a></small>
                           <div class="item" class="col-sm-12">
-                          <img class="img-responsive" src="http://placekitten.com/1000/200" class="slidImageSize" />
+                          <img class="img-responsive" src="/static/images/{{ article.image.1.artcicleimage }}" class="slidImageSize" />
 	                      <div class="row">    
 	                      <div class="row">    
                           <div class="col-sm-6">
-	                            <p>{{ article.content }}</p>
+                              {% include article.content %}
                           </div>
                           <div class="item" class="col-sm-6">
-                          <img class="img-responsive" src="http://placekitten.com/g/200/300" class="slidImageSize" />
+                          <img class="img-responsive" src="/static/images/{{ article.image.0.artcicleimage }}" class="slidImageSize" />
                           </div>
                           </div>
                           </div>

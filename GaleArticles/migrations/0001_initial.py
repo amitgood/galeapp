@@ -11,21 +11,60 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='ArticleContent',
+            fields=[
+                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
+                ('articlecontentpath', models.CharField(max_length=100)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='ArticleImage',
+            fields=[
+                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
+                ('artcicleimage', models.CharField(max_length=100)),
+                ('imagetype', models.CharField(max_length=100)),
+            ],
+        ),
+        migrations.CreateModel(
             name='ArticleModel',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
-                ('articleid', models.CharField(max_length=100)),
+                ('articleid', models.AutoField(primary_key=True, serialize=False)),
                 ('category', models.CharField(max_length=100)),
-                ('relatedid', models.CharField(max_length=300)),
+                ('rank', models.IntegerField()),
                 ('articlename', models.CharField(max_length=100)),
-                ('author', models.CharField(max_length=100)),
                 ('lastupdated', models.DateTimeField(auto_now=True)),
-                ('mainImage', models.CharField(max_length=100)),
-                ('contentImage1', models.CharField(max_length=100)),
-                ('contentImage2', models.CharField(max_length=100)),
-                ('contentImage3', models.CharField(max_length=100)),
                 ('shortdescription', models.CharField(max_length=200)),
-                ('content', models.CharField(max_length=6000)),
             ],
+        ),
+        migrations.CreateModel(
+            name='Author',
+            fields=[
+                ('authorid', models.AutoField(primary_key=True, serialize=False)),
+                ('authorname', models.CharField(max_length=100)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='RelatedArticle',
+            fields=[
+                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
+                ('articleid', models.ForeignKey(to='GaleArticles.ArticleModel', related_name='RelatedArticle_articleid')),
+                ('category', models.ForeignKey(to='GaleArticles.ArticleModel', related_name='relate_category')),
+                ('rel_artcile_id', models.ForeignKey(to='GaleArticles.ArticleModel', related_name='RelatedArticle_articleid_1')),
+            ],
+        ),
+        migrations.AddField(
+            model_name='articlemodel',
+            name='authorid',
+            field=models.ForeignKey(to='GaleArticles.Author', related_name='article_authorid'),
+        ),
+        migrations.AddField(
+            model_name='articleimage',
+            name='articleid',
+            field=models.ForeignKey(to='GaleArticles.ArticleModel', related_name='ArticleImage_articleid'),
+        ),
+        migrations.AddField(
+            model_name='articlecontent',
+            name='articleid',
+            field=models.ForeignKey(to='GaleArticles.ArticleModel', related_name='ArticleContent_articleid'),
         ),
     ]
